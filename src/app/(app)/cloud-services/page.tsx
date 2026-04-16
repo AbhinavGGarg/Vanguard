@@ -65,14 +65,14 @@ export default function CloudServicesPage() {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="font-medium">{resource.name}</p>
-                    <p className="text-sm text-muted-foreground">{resource.type}</p>
+                    <p className="text-sm text-muted-foreground">{resource.service}</p>
                   </div>
                   <Badge variant="outline" className={statusBadge(resource.status === 'Compromised' ? 'Critical' : 'Healthy')}>
                     {resource.status}
                   </Badge>
                 </div>
                 <Separator className="my-3" />
-                <p className="text-sm text-muted-foreground">{resource.reason}</p>
+                <p className="text-sm text-muted-foreground">{resource.reasonForStatus}</p>
               </div>
             ))
           ) : (

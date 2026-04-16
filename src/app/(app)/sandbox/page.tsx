@@ -24,6 +24,12 @@ export default function SandboxPage() {
     setActiveTab('impact');
   };
 
+  const formatEventTime = (timestamp: string) => {
+    const parsed = new Date(timestamp);
+    if (Number.isNaN(parsed.getTime())) return timestamp;
+    return parsed.toLocaleTimeString();
+  };
+
   const copyScript = async () => {
     await navigator.clipboard.writeText(script);
     toast({ title: 'Copied', description: 'Script copied to clipboard.' });
@@ -97,7 +103,7 @@ export default function SandboxPage() {
                     <div key={event.id} className="rounded-lg border border-border bg-background/60 p-3">
                       <div className="mb-1 flex items-center justify-between">
                         <Badge variant="outline">{event.severity}</Badge>
-                        <span className="text-xs text-muted-foreground">{new Date(event.timestamp).toLocaleTimeString()}</span>
+                        <span className="text-xs text-muted-foreground">{formatEventTime(event.timestamp)}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">{event.description}</p>
                     </div>
@@ -140,7 +146,7 @@ export default function SandboxPage() {
                     {data.topProcesses.map((process, index) => (
                       <div key={`${process.name}-${index}`} className="rounded-lg border border-border bg-background/60 p-3">
                         <p className="text-sm font-medium">{index + 1}. {process.name}</p>
-                        <p className="text-xs text-muted-foreground">{process.events} related events</p>
+                        <p className="text-xs text-muted-foreground">{process.count} related events</p>
                       </div>
                     ))}
                   </div>
