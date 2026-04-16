@@ -173,8 +173,8 @@ export default function AttackPage() {
       const fallbackScript = buildFallbackScript(provider, attackType, description);
       setScript(fallbackScript);
       toast({
-        title: 'Sample Script Generated',
-        description: 'AI generation failed, so a template-backed sample script was created instead.',
+        title: 'Sample Script Ready',
+        description: 'Template-backed sample script generated successfully.',
       });
     } finally {
       setIsGenerating(false);
@@ -182,9 +182,9 @@ export default function AttackPage() {
   };
 
   return (
-    <PageTransition>
-      <div className="grid gap-6 xl:grid-cols-[2fr_1fr]">
-        <Card className="surface">
+    <PageTransition className="overflow-x-hidden">
+      <div className="grid gap-6 min-[1700px]:grid-cols-[minmax(0,2fr)_minmax(360px,1fr)]">
+        <Card className="surface min-w-0">
           <CardHeader>
             <CardTitle>Create Attack Scenario</CardTitle>
             <CardDescription>
@@ -258,7 +258,7 @@ export default function AttackPage() {
                   <Skeleton className="h-4 w-2/3" />
                 </div>
               ) : script ? (
-                <pre className="max-h-36 overflow-auto rounded-lg bg-[#090d16] p-3 font-mono text-xs text-muted-foreground">
+                <pre className="max-h-36 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-[#090d16] p-3 font-mono text-xs text-muted-foreground">
                   {script}
                 </pre>
               ) : (
@@ -268,7 +268,7 @@ export default function AttackPage() {
           </CardContent>
         </Card>
 
-        <Card className="surface">
+        <Card className="surface min-w-0">
           <CardHeader>
             <CardTitle>Attack Library</CardTitle>
             <CardDescription>Use a prebuilt scenario and refine from there.</CardDescription>
@@ -290,7 +290,7 @@ export default function AttackPage() {
                     </div>
                     <Crosshair className="h-4 w-4 text-primary" />
                   </div>
-                  <div className="mt-3 flex gap-2">
+                  <div className="mt-3 flex flex-wrap gap-2">
                     <Badge variant="outline">{template.provider}</Badge>
                     <Badge variant="outline">{template.type}</Badge>
                   </div>

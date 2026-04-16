@@ -161,7 +161,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </aside>
 
-        <div className="flex min-h-[calc(100vh-3rem)] flex-1 flex-col gap-4">
+        <div className="flex min-h-[calc(100vh-3rem)] min-w-0 flex-1 flex-col gap-4">
           <header className="sticky top-4 z-10 rounded-2xl border border-border bg-card/80 px-4 py-3 shadow-md backdrop-blur md:px-5">
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-3">
@@ -224,7 +224,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           </header>
 
-          <main className="flex-1 rounded-2xl border border-border bg-card/60 p-4 shadow-md md:p-6">
+          <main className="min-w-0 flex-1 rounded-2xl border border-border bg-card/60 p-4 shadow-md md:p-6">
             {isLoading && (
               <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/20">
                 Running simulation...
