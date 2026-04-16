@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import GradientBackground from '@/components/GradientBackground';
 
 const featureCards = [
   {
@@ -67,9 +68,7 @@ const item = {
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <div className="pointer-events-none absolute inset-0 subtle-grid opacity-30" />
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 top-24 h-80 w-80 rounded-full bg-secondary/20 blur-3xl" />
+      <GradientBackground />
 
       <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-20 pt-8 md:px-8 lg:px-10">
         <header className="mb-14 flex items-center justify-between">
