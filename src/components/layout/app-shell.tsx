@@ -126,9 +126,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <aside className="hidden h-[calc(100vh-3rem)] w-72 shrink-0 flex-col rounded-2xl border border-border bg-card/80 shadow-md backdrop-blur md:flex">
           <div className="px-4 pb-4 pt-5">
             <img src="/vanguard-logo.svg" alt="Vanguard" className="h-8 w-auto object-contain" />
-            <p className="mt-2 text-xs text-muted-foreground">
-              AI-native cloud threat modeling
-            </p>
           </div>
           <Separator />
           <div className="flex-1 space-y-4 px-3 py-4">
