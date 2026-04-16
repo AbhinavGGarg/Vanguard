@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { MainLayout } from '@/components/main-layout';
 import { SimulationProvider } from '@/context/simulation-context';
+import { AlertProvider } from '@/context/alert-context';
 
 export const metadata: Metadata = {
   title: 'CloudStrike AI - Threat Modeling',
@@ -24,13 +25,15 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <SimulationProvider>
-          <SidebarProvider defaultOpen={true}>
-              <MainLayout>
-                  {children}
-              </MainLayout>
-          </SidebarProvider>
-        </SimulationProvider>
+        <AlertProvider>
+          <SimulationProvider>
+            <SidebarProvider defaultOpen={true}>
+                <MainLayout>
+                    {children}
+                </MainLayout>
+            </SidebarProvider>
+          </SimulationProvider>
+        </AlertProvider>
         <Toaster />
       </body>
     </html>
