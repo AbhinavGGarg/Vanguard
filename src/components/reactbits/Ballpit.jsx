@@ -739,7 +739,13 @@ const Ballpit = ({ className = '', followCursor = true, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <canvas className={`ballpit-canvas ${className}`.trim()} ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
+  return (
+    <canvas
+      className={`ballpit-canvas ${className}`.trim()}
+      ref={canvasRef}
+      style={{ width: '100%', height: '100%', maxWidth: '100%', display: 'block' }}
+    />
+  );
 };
 
 export default Ballpit;

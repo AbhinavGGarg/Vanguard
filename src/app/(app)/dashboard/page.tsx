@@ -33,7 +33,7 @@ export default function DashboardPage() {
     : 'No activity yet';
 
   return (
-    <PageTransition>
+    <PageTransition className="overflow-x-hidden">
       <div className="space-y-1">
         <h2 className="text-2xl font-semibold">Welcome back</h2>
         <p className="text-sm text-muted-foreground">
@@ -69,43 +69,8 @@ export default function DashboardPage() {
         ))}
       </motion.div>
 
-      <Card className="surface overflow-hidden">
-        <CardHeader>
-          <CardTitle>Live Threat Field</CardTitle>
-          <CardDescription>Interactive ballpit telemetry simulation for active threat pressure.</CardDescription>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <div
-            className="relative w-full overflow-hidden rounded-xl border border-border bg-slate-950"
-            style={{ minHeight: '260px', maxHeight: '260px' }}
-          >
-            <Ballpit
-              className="opacity-90"
-              count={170}
-              gravity={0.7}
-              friction={0.8}
-              wallBounce={0.95}
-              followCursor
-              colors={[0x3b82f6, 0x8b5cf6, 0xef4444]}
-              ambientIntensity={0.8}
-              lightIntensity={170}
-              minSize={0.45}
-              maxSize={0.95}
-              maxVelocity={0.16}
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/60" />
-            <div className="pointer-events-none absolute left-3 top-3 rounded-lg border border-slate-600 bg-slate-900/80 px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-slate-300">
-              Cursor-reactive telemetry
-            </div>
-            <div className="pointer-events-none absolute bottom-3 left-3 rounded-lg border border-red-500/30 bg-red-500/15 px-2 py-1 text-[10px] text-red-200">
-              {threatsDetected} threats detected
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       <div className="grid gap-4 xl:grid-cols-3">
-        <Card className="surface xl:col-span-2">
+        <Card className="surface min-w-0 xl:col-span-2">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest simulations and outcomes.</CardDescription>
@@ -141,34 +106,67 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="surface">
-          <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
-            <CardDescription>Move through the workflow with one click.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {quickActions.map((action) => {
-              const Icon = action.icon;
-              return (
-                <motion.div key={action.href} whileHover={{ y: -2 }}>
-                  <Link
-                    href={action.href}
-                    className="block rounded-xl border border-border bg-background/70 p-4 transition-colors hover:bg-background"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-primary" />
-                        <p className="text-sm font-medium">{action.title}</p>
+        <div className="min-w-0 space-y-4">
+          <Card className="surface">
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+              <CardDescription>Move through the workflow with one click.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {quickActions.map((action) => {
+                const Icon = action.icon;
+                return (
+                  <motion.div key={action.href} whileHover={{ y: -2 }}>
+                    <Link
+                      href={action.href}
+                      className="block rounded-xl border border-border bg-background/70 p-4 transition-colors hover:bg-background"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Icon className="h-4 w-4 text-primary" />
+                          <p className="text-sm font-medium">{action.title}</p>
+                        </div>
+                        <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
                       </div>
-                      <ArrowUpRight className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                    <p className="mt-2 text-xs text-muted-foreground">{action.description}</p>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </CardContent>
-        </Card>
+                      <p className="mt-2 text-xs text-muted-foreground">{action.description}</p>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </CardContent>
+          </Card>
+
+          <Card className="surface overflow-hidden">
+            <CardHeader>
+              <CardTitle>Threat Field</CardTitle>
+              <CardDescription>Live ballpit telemetry reacting to cursor motion.</CardDescription>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="relative isolate h-44 w-full max-w-full overflow-hidden rounded-xl border border-border bg-slate-950">
+                <div className="absolute inset-0">
+                  <Ballpit
+                    className="h-full w-full opacity-85"
+                    count={120}
+                    gravity={0.7}
+                    friction={0.8}
+                    wallBounce={0.95}
+                    followCursor
+                    colors={[0x3b82f6, 0x8b5cf6, 0xef4444]}
+                    ambientIntensity={0.8}
+                    lightIntensity={170}
+                    minSize={0.45}
+                    maxSize={0.95}
+                    maxVelocity={0.16}
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/25 via-transparent to-slate-950/65" />
+                <div className="pointer-events-none absolute bottom-2 left-2 rounded-lg border border-red-500/30 bg-red-500/15 px-2 py-1 text-[10px] text-red-200">
+                  {threatsDetected} threats
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </PageTransition>
   );
