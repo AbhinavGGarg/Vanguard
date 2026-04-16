@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import { InteractiveBackground } from '@/components/background/interactive-background';
 
 export const metadata: Metadata = {
   title: 'Vanguard',
@@ -24,8 +25,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans">
-        {children}
-        <Toaster />
+        <InteractiveBackground />
+        <div className="relative z-10">
+          {children}
+          <Toaster />
+        </div>
       </body>
     </html>
   );

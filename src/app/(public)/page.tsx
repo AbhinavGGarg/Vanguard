@@ -16,7 +16,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import GradientBackground from '@/components/GradientBackground';
 
 const featureCards = [
   {
@@ -68,8 +67,6 @@ const item = {
 export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      <GradientBackground />
-
       <div className="relative mx-auto flex w-full max-w-7xl flex-col px-6 pb-20 pt-8 md:px-8 lg:px-10">
         <header className="mb-14 flex items-center justify-between">
           <img src="/vanguard-logo.svg" alt="Vanguard" className="h-9 w-auto" />
