@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="leftWing" x1="22" y1="44" x2="66" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#46d6ff"/>
+      <stop offset="0.55" stop-color="#3d7cff"/>
+      <stop offset="1" stop-color="#2b4fd1"/>
+    </linearGradient>
+    <linearGradient id="rightWing" x1="106" y1="44" x2="60" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d6a7ff"/>
+      <stop offset="0.5" stop-color="#8c4dff"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="64" y1="38" x2="64" y2="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2b3f8a"/>
+      <stop offset="1" stop-color="#0b1229"/>
+    </linearGradient>
+    <radialGradient id="eyeGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(80 45) rotate(90) scale(9)">
+      <stop offset="0" stop-color="#78e2ff"/>
+      <stop offset="0.45" stop-color="#2f7cff"/>
+      <stop offset="1" stop-color="#2f7cff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <path d="M64 122L30 92L14 44L44 54L64 92L84 54L114 44L98 92L64 122Z" fill="url(#shell)"/>
+  <path d="M64 112L34 84L22 46L42 54L64 88V112Z" fill="url(#leftWing)"/>
+  <path d="M64 112L94 84L106 46L86 54L64 88V112Z" fill="url(#rightWing)"/>
+  <path d="M64 121L50 95L64 70L78 95L64 121Z" fill="#14234f"/>
+  <path d="M28 46L62 56L64 52L66 56L100 46L78 60L64 68L50 60L28 46Z" fill="#95a0f2" fill-opacity="0.9"/>
+  <circle cx="80" cy="45" r="8" fill="url(#eyeGlow)"/>
+  <circle cx="80" cy="45" r="3" fill="#2ea9ff"/>
+</svg>

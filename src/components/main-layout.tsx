@@ -50,12 +50,13 @@ function MainLayoutComponent({ children }: { children: React.ReactNode }) {
             <Sidebar variant='sidebar' collapsible='icon'>
                 <SidebarHeader>
                     <div className="flex items-center justify-between p-2">
-                       <div className="flex items-center gap-3">
-                         <Logo className="text-primary h-8 w-8"/>
-                         <div className="flex flex-col">
-                          <h1 className="text-lg font-semibold text-foreground tracking-wide">Vanguard</h1>
-                          <span className="text-[10px] uppercase text-muted-foreground tracking-wider">Cloud-Native Threat Modeling</span>
-                         </div>
+                       <div className="flex items-center gap-3 min-w-0">
+                         <Logo className="h-9 w-9 shrink-0" />
+                         <img
+                           src="/vanguard-logo.svg"
+                           alt="Vanguard"
+                           className="h-6 w-auto max-w-[180px] object-contain"
+                         />
                        </div>
                        <Button variant="ghost" size="icon" onClick={() => setIsHistoryOpen(true)}>
                             <History className="h-5 w-5"/>

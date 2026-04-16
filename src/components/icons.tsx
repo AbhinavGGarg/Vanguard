@@ -1,22 +1,11 @@
-import type { SVGProps } from "react";
 import { cn } from "@/lib/utils";
 
-export function Logo({ className, ...props }: SVGProps<SVGSVGElement>) {
+export function Logo({ className }: { className?: string }) {
   return (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className={cn("h-8 w-8 text-primary", className)}
-        {...props}
-    >
-        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-        <path d="m14 12-4 4" />
-        <path d="m10 12 4 4" />
-    </svg>
+    <img
+      src="/vanguard-mark.svg"
+      alt="Vanguard logo"
+      className={cn("h-8 w-8 object-contain", className)}
+    />
   );
 }
