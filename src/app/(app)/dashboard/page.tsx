@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, CalendarClock, ShieldAlert, ShieldCheck, Sparkles } from 'lucide-react';
 
@@ -12,8 +11,6 @@ import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSimulation } from '@/context/simulation-context';
 import { PageTransition } from '@/components/layout/page-transition';
-
-const Ballpit = dynamic(() => import('@/components/reactbits/Ballpit'), { ssr: false });
 
 const quickActions = [
   { href: '/attack', title: 'Generate Attack', icon: Sparkles, description: 'Create a new threat scenario.' },
@@ -136,36 +133,6 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="surface overflow-hidden">
-            <CardHeader>
-              <CardTitle>Threat Field</CardTitle>
-              <CardDescription>Live ballpit telemetry reacting to cursor motion.</CardDescription>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <div className="relative isolate h-44 w-full max-w-full overflow-hidden rounded-xl border border-border bg-slate-950">
-                <div className="absolute inset-0">
-                  <Ballpit
-                    className="h-full w-full opacity-85"
-                    count={120}
-                    gravity={0.7}
-                    friction={0.8}
-                    wallBounce={0.95}
-                    followCursor
-                    colors={[0x3b82f6, 0x8b5cf6, 0xef4444]}
-                    ambientIntensity={0.8}
-                    lightIntensity={170}
-                    minSize={0.45}
-                    maxSize={0.95}
-                    maxVelocity={0.16}
-                  />
-                </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/25 via-transparent to-slate-950/65" />
-                <div className="pointer-events-none absolute bottom-2 left-2 rounded-lg border border-red-500/30 bg-red-500/15 px-2 py-1 text-[10px] text-red-200">
-                  {threatsDetected} threats
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </PageTransition>
