@@ -1,14 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
-import { SidebarProvider } from '@/components/ui/sidebar';
-import { MainLayout } from '@/components/main-layout';
-import { SimulationProvider } from '@/context/simulation-context';
-import { AlertProvider } from '@/context/alert-context';
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Vanguard - Threat Modeling',
-  description: 'AI-powered sandbox for modeling and analyzing cloud-native attacks.',
+  title: 'Vanguard',
+  description: 'AI-powered cloud threat modeling and defense platform.',
 };
 
 export default function RootLayout({
@@ -22,19 +18,13 @@ export default function RootLayout({
         <link rel="icon" href="/vanguard-mark.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className="font-body antialiased">
-        <AlertProvider>
-          <SimulationProvider>
-            <SidebarProvider defaultOpen={true}>
-                <MainLayout>
-                    {children}
-                </MainLayout>
-            </SidebarProvider>
-          </SimulationProvider>
-        </AlertProvider>
+      <body className="font-sans">
+        {children}
         <Toaster />
       </body>
     </html>
