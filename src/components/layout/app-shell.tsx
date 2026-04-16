@@ -6,6 +6,7 @@ import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Activity,
+  ArrowLeft,
   ChevronDown,
   Cloud,
   Crosshair,
@@ -182,6 +183,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     </div>
                   </SheetContent>
                 </Sheet>
+
+                <Button asChild variant="outline" size="sm" className="gap-1.5">
+                  <Link href="/">
+                    <ArrowLeft className="h-4 w-4" />
+                    <span className="hidden sm:inline">Home</span>
+                  </Link>
+                </Button>
 
                 <div>
                   <p className="text-xs uppercase tracking-wide text-muted-foreground">Vanguard</p>
