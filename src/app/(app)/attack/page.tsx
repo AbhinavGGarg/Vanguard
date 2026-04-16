@@ -48,6 +48,94 @@ const templates = [
   },
 ] as const;
 
+const fallbackScriptByProvider: Record<string, string> = {
+  AWS: `#!/bin/bash
+# Simulated cloud attack script (AWS)
+# T1530: Data from Cloud Storage Object
+# T1098: Account Manipulation
+
+echo "[SIM] Starting AWS exfiltration simulation..."
+echo "[SIM] Enumerating S3 buckets with loose ACLs..."
+echo "aws s3api list-buckets --query 'Buckets[].Name'"
+
+echo "[SIM] Targeting bucket: finance-archive-prod"
+echo "aws s3 ls s3://finance-archive-prod --recursive | head -n 20"
+echo "[SIM] Simulating staged copy of selected objects"
+echo "aws s3 cp s3://finance-archive-prod ./staging --recursive --exclude '*' --include '*.csv'"
+
+echo "[SIM] Attempting persistence via IAM user policy abuse"
+echo "aws iam create-user --user-name shadow-ops-sim"
+echo "aws iam attach-user-policy --user-name shadow-ops-sim --policy-arn arn:aws:iam::aws:policy/PowerUserAccess"
+
+echo "[SIM] Exfiltration simulation complete (no destructive action taken)."`,
+  GCP: `#!/bin/bash
+# Simulated cloud attack script (GCP)
+# T1098: Account Manipulation
+# T1078: Valid Accounts
+
+echo "[SIM] Starting GCP IAM persistence simulation..."
+echo "[SIM] Enumerating project IAM policy bindings"
+echo "gcloud projects get-iam-policy demo-project --format=json"
+
+echo "[SIM] Creating unauthorized service account"
+echo "gcloud iam service-accounts create stealth-backup-sim --display-name='Stealth Backup Sim'"
+
+echo "[SIM] Granting elevated role to service account"
+echo "gcloud projects add-iam-policy-binding demo-project --member='serviceAccount:stealth-backup-sim@demo-project.iam.gserviceaccount.com' --role='roles/editor'"
+
+echo "[SIM] Generating key material (simulated only)"
+echo "gcloud iam service-accounts keys create /tmp/stealth-key.json --iam-account='stealth-backup-sim@demo-project.iam.gserviceaccount.com'"
+
+echo "[SIM] Persistence simulation complete (no destructive action taken)."`,
+  Azure: `#!/bin/bash
+# Simulated cloud attack script (Azure)
+# T1059: Command and Scripting Interpreter
+# T1210: Exploitation of Remote Services
+
+echo "[SIM] Starting Azure VM RCE simulation..."
+echo "[SIM] Enumerating exposed VMs and NSG rules"
+echo "az vm list -d -o table"
+echo "az network nsg list -o table"
+
+echo "[SIM] Simulating remote command execution against target VM"
+echo "az vm run-command invoke --resource-group rg-prod --name vm-payroll --command-id RunShellScript --scripts 'echo simulated-rce'"
+
+echo "[SIM] Simulating credential collection from metadata endpoint"
+echo "curl -H Metadata:true 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/'"
+
+echo "[SIM] RCE simulation complete (no destructive action taken)."`,
+  'Multi-Cloud': `#!/bin/bash
+# Simulated cloud attack script (Multi-Cloud Kubernetes)
+# T1552: Unsecured Credentials
+# T1550.001: Use of Stolen Session/Token
+
+echo "[SIM] Starting Kubernetes token theft simulation..."
+echo "[SIM] Enumerating pods and service accounts"
+echo "kubectl get pods -A"
+echo "kubectl get serviceaccounts -A"
+
+echo "[SIM] Searching for mounted service-account tokens"
+echo "kubectl exec -n default suspicious-pod -- ls /var/run/secrets/kubernetes.io/serviceaccount"
+
+echo "[SIM] Simulating API use with stolen token"
+echo "kubectl --token=<simulated-token> auth can-i '*' '*' --all-namespaces"
+
+echo "[SIM] Simulating cross-cloud secret discovery hooks"
+echo "[SIM] Querying cloud metadata endpoints from compromised workload context"
+
+echo "[SIM] Token-theft simulation complete (no destructive action taken)."`,
+};
+
+function buildFallbackScript(provider: string, attackType: string, description: string) {
+  const template = fallbackScriptByProvider[provider] || fallbackScriptByProvider['Multi-Cloud'];
+  return `${template}
+
+# Operator context:
+# Provider: ${provider}
+# Attack Type: ${attackType}
+# Intent: ${description.replace(/\n/g, ' ').trim()}`;
+}
+
 export default function AttackPage() {
   const { toast } = useToast();
   const { description, setDescription, setScript, script } = useSimulation();
@@ -82,10 +170,11 @@ export default function AttackPage() {
       setScript(result.script);
       toast({ title: 'Script Generated', description: 'Attack script is ready in the sandbox.' });
     } catch {
+      const fallbackScript = buildFallbackScript(provider, attackType, description);
+      setScript(fallbackScript);
       toast({
-        variant: 'destructive',
-        title: 'Generation Failed',
-        description: 'Unable to generate script. Please refine the scenario and try again.',
+        title: 'Sample Script Generated',
+        description: 'AI generation failed, so a template-backed sample script was created instead.',
       });
     } finally {
       setIsGenerating(false);
