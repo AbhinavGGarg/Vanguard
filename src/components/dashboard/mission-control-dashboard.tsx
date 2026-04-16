@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import {
   AlertTriangle,
@@ -33,6 +34,8 @@ type SeverityTone = {
   text: string;
   pulse: string;
 };
+
+const Ballpit = dynamic(() => import('@/components/reactbits/Ballpit'), { ssr: false });
 
 type ThreatEventItem = {
   id: string;
@@ -475,27 +478,43 @@ export function MissionControlDashboard() {
               className="rounded-[24px] border border-slate-800 bg-slate-950/70 p-5"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-base font-semibold text-slate-100">Network Topology Snapshot</h3>
+                <h3 className="text-base font-semibold text-slate-100">Threat Field Simulation</h3>
                 <Cloud className="h-4 w-4 text-slate-400" />
               </div>
               <div className="mt-4 rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-                <div className="relative h-48 overflow-hidden rounded-xl border border-slate-700 bg-slate-950">
-                  <div className="absolute left-1/2 top-4 -translate-x-1/2 rounded-full border border-blue-400/40 bg-blue-500/20 px-3 py-1 text-[11px] text-blue-200">
-                    Vanguard Core
+                <div
+                  className="relative w-full overflow-hidden rounded-xl border border-slate-700 bg-slate-950"
+                  style={{ minHeight: '260px', maxHeight: '260px' }}
+                >
+                  <Ballpit
+                    className="opacity-85"
+                    count={170}
+                    gravity={0.7}
+                    friction={0.8}
+                    wallBounce={0.95}
+                    followCursor
+                    colors={[0x3b82f6, 0x8b5cf6, 0xef4444]}
+                    ambientIntensity={0.8}
+                    lightIntensity={170}
+                    minSize={0.45}
+                    maxSize={0.95}
+                    maxVelocity={0.16}
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/30 via-transparent to-slate-950/60" />
+                  <div className="pointer-events-none absolute left-3 top-3 rounded-lg border border-slate-600 bg-slate-900/75 px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-slate-300">
+                    Live particle threat model
                   </div>
-                  <div className="absolute left-6 top-20 rounded-lg border border-orange-400/30 bg-orange-500/15 px-2 py-1 text-[11px] text-orange-200">
-                    AWS {providerCount.AWS ?? 0}
+                  <div className="pointer-events-none absolute bottom-3 left-3 flex flex-wrap gap-2">
+                    <span className="rounded-md border border-orange-400/30 bg-orange-500/15 px-2 py-1 text-[10px] text-orange-200">
+                      AWS {providerCount.AWS ?? 0}
+                    </span>
+                    <span className="rounded-md border border-blue-400/30 bg-blue-500/15 px-2 py-1 text-[10px] text-blue-200">
+                      GCP {providerCount.GCP ?? 0}
+                    </span>
+                    <span className="rounded-md border border-cyan-400/30 bg-cyan-500/15 px-2 py-1 text-[10px] text-cyan-200">
+                      Azure {providerCount.Azure ?? 0}
+                    </span>
                   </div>
-                  <div className="absolute right-6 top-20 rounded-lg border border-blue-400/30 bg-blue-500/15 px-2 py-1 text-[11px] text-blue-200">
-                    GCP {providerCount.GCP ?? 0}
-                  </div>
-                  <div className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-lg border border-cyan-400/30 bg-cyan-500/15 px-2 py-1 text-[11px] text-cyan-200">
-                    Azure {providerCount.Azure ?? 0}
-                  </div>
-                  <div className="absolute left-1/2 top-[44px] h-[72px] w-px -translate-x-1/2 bg-slate-600" />
-                  <div className="absolute left-[92px] top-[62px] h-px w-[calc(50%-92px)] bg-slate-600" />
-                  <div className="absolute right-[92px] top-[62px] h-px w-[calc(50%-92px)] bg-slate-600" />
-                  <div className="absolute left-1/2 top-[118px] h-[30px] w-px -translate-x-1/2 bg-slate-600" />
                 </div>
               </div>
             </motion.section>
