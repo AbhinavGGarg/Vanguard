@@ -14,7 +14,6 @@ import {
     SidebarMenuButton,
     SidebarInset,
 } from '@/components/ui/sidebar';
-import { Logo } from '@/components/icons';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useSimulation } from '@/context/simulation-context';
@@ -50,12 +49,11 @@ function MainLayoutComponent({ children }: { children: React.ReactNode }) {
             <Sidebar variant='sidebar' collapsible='icon'>
                 <SidebarHeader>
                     <div className="flex items-center justify-between p-2">
-                       <div className="flex items-center gap-3 min-w-0">
-                         <Logo className="h-9 w-9 shrink-0" />
+                       <div className="flex items-center min-w-0">
                          <img
                            src="/vanguard-logo.svg"
                            alt="Vanguard"
-                           className="h-6 w-auto max-w-[180px] object-contain"
+                           className="h-7 w-auto max-w-[220px] object-contain"
                          />
                        </div>
                        <Button variant="ghost" size="icon" onClick={() => setIsHistoryOpen(true)}>
