@@ -7,7 +7,7 @@ import { SimulationProvider } from '@/context/simulation-context';
 import { AlertProvider } from '@/context/alert-context';
 
 export const metadata: Metadata = {
-  title: 'Vangaurd AI - Threat Modeling',
+  title: 'Vanguard - Threat Modeling',
   description: 'AI-powered sandbox for modeling and analyzing cloud-native attacks.',
 };
 

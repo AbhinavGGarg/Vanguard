@@ -1,4 +1,4 @@
-# Vangaurd AI - AI-Powered Threat Modeling Sandbox
+# Vanguard - AI-Powered Threat Modeling Sandbox
 
 <img width="201" height="93" alt="Screenshot 2025-08-09 111733" src="https://github.com/user-attachments/assets/d7a1e118-0f6a-42a1-8e7f-6fa97573d0ff" />
 
@@ -6,7 +6,7 @@
 
 ## Overview
 
-Vangaurd AI is an AI-driven cybersecurity sandbox for modern security teams. It helps users simulate, analyze, and visualize cloud-native attack scenarios in a controlled environment. Rather than relying on static threat reports, Vangaurd AI generates dynamic attack simulations, proposes defensive actions, evaluates their impact, and surfaces practical response insights.
+Vanguard is an AI-driven cybersecurity sandbox for modern security teams. It helps users simulate, analyze, and visualize cloud-native attack scenarios in a controlled environment. Rather than relying on static threat reports, Vanguard generates dynamic attack simulations, proposes defensive actions, evaluates their impact, and surfaces practical response insights.
 
 ## Core Features
 
@@ -19,7 +19,7 @@ Vangaurd AI is an AI-driven cybersecurity sandbox for modern security teams. It 
 
 ## How The AI Pipeline Works
 
-Vangaurd AI runs as a connected set of Genkit flows. From one input, the system constructs an end-to-end scenario in real time rather than relying on static mock datasets.
+Vanguard runs as a connected set of Genkit flows. From one input, the system constructs an end-to-end scenario in real time rather than relying on static mock datasets.
 
 <img width="892" height="562" alt="Screenshot 2025-08-17 142149" src="https://github.com/user-attachments/assets/082a3219-16d1-4c3c-acd3-a8dee8db94b7" />
 

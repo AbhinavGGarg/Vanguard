@@ -1,17 +1,17 @@
 
-# About Vangaurd AI
+# About Vanguard
 
-This document details the journey of creating Vangaurd AI, from the initial idea to the final product, covering the inspiration, the building process, the challenges faced, and the key learnings.
+This document details the journey of creating Vanguard, from the initial idea to the final product, covering the inspiration, the building process, the challenges faced, and the key learnings.
 
 ## What Inspired Me
 
 In cybersecurity, defense is often reactive. Security teams analyze threats *after* they happen, patching vulnerabilities and responding to incidents. I was inspired by the idea of shifting this paradigm from reactive to proactive. How could we empower defenders to think like attackers and safely test their infrastructure against threats that don't even exist yet?
 
-The answer I envisioned was an intelligent sandbox—a "sparring partner" for security professionals. I wanted to build a tool where a user could describe a hypothetical attack in plain language, and an AI would not only simulate it but also model its full impact, validate a defense, and even iterate on that defense to make it stronger. This is the core concept behind Vangaurd AI: turning threat intelligence from a static report into an interactive, hands-on experience.
+The answer I envisioned was an intelligent sandbox—a "sparring partner" for security professionals. I wanted to build a tool where a user could describe a hypothetical attack in plain language, and an AI would not only simulate it but also model its full impact, validate a defense, and even iterate on that defense to make it stronger. This is the core concept behind Vanguard: turning threat intelligence from a static report into an interactive, hands-on experience.
 
 ## How I Built It
 
-Vangaurd AI is a full-stack application built with a modern, AI-centric tech stack.
+Vanguard is a full-stack application built with a modern, AI-centric tech stack.
 
 *   **Frontend:** The user interface is built with **Next.js**, **React**, and **TypeScript**. I used **ShadCN UI** components and **Tailwind CSS** to create a responsive, professional, and data-dense dashboard. State management is handled by React Context, with a persistent session history stored in `localStorage` to ensure a smooth user experience across navigations.
 
